@@ -1,43 +1,17 @@
 ﻿using static System.Console;
+using System;
+using System.Linq;
+using System.Text.RegularExpressions;
+using System.Collections.Generic;
+
 internal class Program
 {
     private static void Main()
     {
-        var res = validBraces("()");
-        WriteLine("() -> " + res);
-
-        res = validBraces("[(])");
-        WriteLine("[(]) -> " + res);
-
-        res = validBraces("(){}[]");
-        WriteLine("(){}[] -> " + res);
-
-        res = validBraces("([{}])");
-        WriteLine("([{}]) -> " + res);
-
-        res = validBraces("(}");
-        WriteLine("(} -> " + res);
-
-        res = validBraces("[({})](]");
-        WriteLine("[({})](] -> " + res);
-
-        res = validBraces("(}})");
-        WriteLine("(}}) -> " + res);
-
-        res = validBraces("(");
-        WriteLine("( -> " + res);
-
-        res = validBraces("[[(]])");
-        WriteLine("[[(]]) -> " + res);
-
-        res = validBraces("())");
-        WriteLine("(() -> " + res);
-
-        res = validBraces("((((())))}");
-        WriteLine("((((())))} -> " + res);
-
-        res = validBraces("()))");
-        WriteLine("())) -> " + res);
+        foreach (var item in Solution("abcdef"))
+        {
+            Write($"{item} ");
+        }
     }
     private static bool validBraces(string braces)
     {
@@ -82,5 +56,20 @@ internal class Program
         }
 
         return false;
+    }
+    private static string[] Solution(string str)
+    {
+        if (str.Length % 2 != 0)
+        {
+            str += "_";
+        }
+
+        var res = new List<string>();
+        var count = 2;
+        for (int i = 0; i < str.Length; i += count)
+        {
+            res.Add(str.Substring(i, count));
+        }
+        return res.ToArray();
     }
 }
