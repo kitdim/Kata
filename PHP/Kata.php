@@ -3,6 +3,7 @@
 class Kata
 {
     /**
+     * Kata of "Find the divisors!"
      * @param int $integer integer number
      * @return array|string array with all the integer's divisors
      */
@@ -39,7 +40,26 @@ class Kata
             if($num % $i == 0)
                 return false;
         }
-
         return true;
+    }
+
+    /**
+     * Kata of "Stop gninnipS My sdroW!"
+     * @param string $str string of one or more words
+     * @return string the same string, but with all five or more letter words reversed
+     */
+    public static function spinWords(string $str): string 
+    {
+        $words = explode(" ", $str);
+        $index = 0;
+        while(count($words) > $index) {
+            $word = $words[$index];
+            if(strlen($word) >= 5){
+                $words[$index] = strrev($word);
+            }
+            $index++;
+        }
+
+        return join(" ", $words);
     }
 }
