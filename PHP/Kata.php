@@ -81,7 +81,54 @@ class Kata
         }
         return $arr;
     }
+    /**
+     * Kata of "Who likes it?"
+     * @param array $names array of names
+     * @return string he display text as shown in the examples:
 
+    []                                -->  "no one likes this"
+    ["Peter"]                         -->  "Peter likes this"
+    ["Jacob", "Alex"]                 -->  "Jacob and Alex like this"
+    ["Max", "John", "Mark"]           -->  "Max, John and Mark like this"
+    ["Alex", "Jacob", "Mark", "Max"]  -->  "Alex, Jacob and 2 others like this"
+     */
+    public static function likes(array $names): string
+    {
+        $resultString = "no one likes this";
+        if (empty($names))
+        {
+            return $resultString;
+        }
+        elseif (count($names) == 1)
+        {
+            $name = $names[0];
+            $resultString = $name . " likes this";
+            return $resultString;
+        }
+        elseif (count($names) == 2)
+        {
+            $name1 = $names[0];
+            $name2 = $names[1];
+            $resultString = $name1 . " and " . $name2 . " like this";
+            return $resultString;
+        }
+        elseif (count($names) == 3)
+        {
+            $name1 = $names[0];
+            $name2 = $names[1];
+            $name3 = $names[2];
+            $resultString = $name1 . ", " . $name2 . " and " . $name3 . " like this";
+            return $resultString;
+        }
+        else
+        {
+            $name1 = $names[0];
+            $name2 = $names[1];
+            $countAfter = count($names) - 2;
+            $resultString = $name1 . ", " . $name2 . " and " . $countAfter . " others like this";
+            return $resultString;
+        }
+    }
 }
 
 echo "<pre>";
